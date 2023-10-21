@@ -13,8 +13,12 @@ function App() {
   }
 
   function deleteFunc(name) {
-    const updateGrocery=grocery.filter((item) => item !== name);
+    const updateGrocery = grocery.filter((item) => item !== name);
     setgrocery(updateGrocery);
+  }
+  function editFunc(mname){
+    const edit=grocery.map((item)=>mname===item);
+    setgrocery(edit);
   }
 
   return (
@@ -34,30 +38,16 @@ function App() {
               submit
             </button>
           </div>
-          {grocery.map((item, index) => {
-            const unique=`${item}-${index}`;
-            return (
-              <>
-                <div className="grocery-container" key={unique}>
-                  {item}
-                  <button className="btn">
-                    edit
-                  </button>
-                  <button
-                    className="btn"
-                    onClick={()=>{deleteFunc(item)}}
-                    
-                  >
-                    delete
-                  </button>
-                </div>
-                {/* <div className="btn-container">
-            <button className="btn" onClick={deleteFunc}>delete</button></div> */}
-              </>
-            );
-          })}
+          <List functionm={deleteFunc} grocery={grocery}/>
           <div>
-          <button className="btn" onClick={()=>{setgrocery([])}}>Clear Items</button>
+            <button
+              className="btn"
+              onClick={() => {
+                setgrocery([]);
+              }}
+            >
+              Clear Items
+            </button>
           </div>
         </section>
       </form>
