@@ -6,7 +6,7 @@ function App() {
   //::::::::::::::::::::::::::Tuturial::::::::::::::::::
 
   const [name,setName]=useState();
-  const [list,setList]=useState([{Id:"009",Name:"Ali"}]);
+  const [list,setList]=useState([]);
   const[isEdit,setIsEdit]=useState(false);
   const[editId,setEditId]=useState('');
   const[alert,setAlert]=useState({show:false,msg:'',type:''});
@@ -40,8 +40,9 @@ function App() {
 
     }
     else{
-      const newItem={id:new Date().getTime().toString(),Name:'name'};
+      const newItem={id:new Date().getTime().toString(),Name:name};
       setList([...list,newItem]);
+      setName('')
       console.log(list);
     }
 
@@ -91,10 +92,15 @@ function App() {
       <input className="grocery" type="text" value={name} onChange={(e)=>{setName(e.target.value)}}/>
       <button type="submit" className="submit-btn">{isEdit?'Edit':'Submit'}</button>
     </div>
-  <div className="grocery-container">
-  <List/>
-  </div>
-  <button className="clear-btn" type="submit">Clear All</button>
+  
+    {list.length>0 &&  <div className="grocery-container">
+      <List itmes={list}/>
+    <button className="clear-btn" type="submit">Clear All</button>
+    </div>
+    }
+  
+ 
+ 
   </form>
  
 </section>

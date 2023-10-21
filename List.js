@@ -30,11 +30,29 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 //   // <h2>list component</h2>
 // };
 
-const List=()=>{
+const List=({itmes})=>{
 
 return(
   <>
-  <h2>List Component</h2>
+  <div>
+    {itmes.map((item)=>{
+      const {id,Name}=item;
+      return(
+        <>
+        <article key={id} className="grocery-item">
+        <p  className='title' >{Name}</p>
+        <div className="btn-container"> <button className="edit-btn"><FaEdit/></button>
+        <button className="delete-btn"><FaTrash/></button></div>
+       
+        </article>
+        </>
+      )
+    })}
+  </div>
+   
+
+ 
+  {/* <h2>List Component</h2> */}
   </>
 )
 }
