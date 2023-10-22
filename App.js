@@ -29,22 +29,37 @@ function App() {
   //   const edit=grocery.map((item)=>mname===item);
   //   setgrocery(edit);
   // }
+  
+  //::::::::::Let's craete Alert Function:::::::::
+
+  function showAlert(show=false,msg='',type=''){
+    setAlert({show,msg,type})
+  }
 
   function handleSubmit(e){
     e.preventDefault();
     if(!name){
       //display: Alert
+      // setAlert({show:true,msg:'Please Enter your item',type:'danger'})
+      showAlert(true,"enter",'danger')
     }
     else if(name && isEdit){
       //edit
+      // setAlert({show:true,msg:'Item edited',type:'success'})
+      showAlert(true,'hey','success');
 
     }
     else{
       const newItem={id:new Date().getTime().toString(),Name:name};
       setList([...list,newItem]);
       setName('')
+      // setAlert({show:true,msg:'Item added',type:'success'})
+      // setAlert('')
+      showAlert(true,'yes','success')
+      
       console.log(list);
     }
+   
 
   }
 
@@ -86,7 +101,7 @@ function App() {
 <>
 <section className="section-center">
   <form className="grocery-form" onSubmit={handleSubmit}>
-    {alert.show && <Alert/>}
+    {alert.show && <Alert {...alert} removeAlert={showAlert}/>}
     <h3>Grocery Bud</h3>
     <div className="form-control">
       <input className="grocery" type="text" value={name} onChange={(e)=>{setName(e.target.value)}}/>
