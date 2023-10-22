@@ -35,6 +35,18 @@ function App() {
   function showAlert(show=false,msg='',type=''){
     setAlert({show,msg,type})
   }
+  function clearList(){
+    showAlert(true,'empty List','danger');
+    setList([])
+
+  }
+  const delItem =(id)=>{
+    showAlert(true,'removed','danger')
+    const newList=list.filter((item)=>item.id!==id);
+    setList(newList);
+    // console.log(newList);
+
+  }
 
   function handleSubmit(e){
     e.preventDefault();
@@ -59,6 +71,7 @@ function App() {
       
       console.log(list);
     }
+    
    
 
   }
@@ -101,7 +114,7 @@ function App() {
 <>
 <section className="section-center">
   <form className="grocery-form" onSubmit={handleSubmit}>
-    {alert.show && <Alert {...alert} removeAlert={showAlert}/>}
+    {alert.show && <Alert {...alert} removeAlert={showAlert} list={list}/>}
     <h3>Grocery Bud</h3>
     <div className="form-control">
       <input className="grocery" type="text" value={name} onChange={(e)=>{setName(e.target.value)}}/>
@@ -109,8 +122,8 @@ function App() {
     </div>
   
     {list.length>0 &&  <div className="grocery-container">
-      <List itmes={list}/>
-    <button className="clear-btn" type="submit">Clear All</button>
+      <List itmes={list} func={delItem}/>
+    <button onClick={clearList} className="clear-btn" type="submit">Clear All</button>
     </div>
     }
   

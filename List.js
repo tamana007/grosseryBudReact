@@ -30,7 +30,7 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 //   // <h2>list component</h2>
 // };
 
-const List=({itmes})=>{
+const List=({itmes,func})=>{
 
 return(
   <>
@@ -41,8 +41,8 @@ return(
         <>
         <article key={id} className="grocery-item">
         <p  className='title' >{Name}</p>
-        <div className="btn-container"> <button className="edit-btn"><FaEdit/></button>
-        <button className="delete-btn"><FaTrash/></button></div>
+        <div className="btn-container"> <button className="edit-btn" ><FaEdit/></button>
+        <button className="delete-btn" onClick={()=>{func(id)}}><FaTrash/></button></div>
        
         </article>
         </>
