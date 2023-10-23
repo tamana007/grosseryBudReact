@@ -47,9 +47,14 @@ function App() {
     // console.log(newList);
 
   }
+  //:::::::::::::::::::::::::::::::::::::::::EDIT FUNCTION !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
   const editItem=(id)=>{
     const specificItem=list.find((item)=>item.id===id)
-    isEdit(true);
+    setIsEdit(true);
+    setEditId(id);
+    setName(specificItem.name)
+
 
   }
 
@@ -62,8 +67,19 @@ function App() {
     }
     else if(name && isEdit){
       //edit
+      showAlert(true,'select your Item','success');
+      setList(list.map((item)=>{
+        if(item.id===editId){
+          return {...item,Name:name}
+        }
+        return item
+      }))
+      setName('');
+      setEditId(null)
+      setIsEdit(false)
+      showAlert(true, 'value changed', 'success')
       // setAlert({show:true,msg:'Item edited',type:'success'})
-      showAlert(true,'hey','success');
+      // 
 
     }
     else{
@@ -127,7 +143,7 @@ function App() {
     </div>
   
     {list.length>0 &&  <div className="grocery-container">
-      <List itmes={list} func={delItem}/>
+      <List itmes={list} func={delItem} edit={editItem}/>
     <button onClick={clearList} className="clear-btn" type="submit">Clear All</button>
     </div>
     }
