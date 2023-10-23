@@ -41,7 +41,7 @@ return(
         <>
         <article key={id} className="grocery-item">
         <p  className='title' >{Name}</p>
-        <div className="btn-container"> <button className="edit-btn" onClick={()=>{edit(id)}}><FaEdit/></button>
+        <div className="btn-container"> <button className="edit-btn" onClick={() => edit(id)}><FaEdit/></button>
         <button className="delete-btn" onClick={()=>{func(id)}}><FaTrash/></button></div>
        
         </article>

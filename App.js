@@ -5,7 +5,7 @@ import Alert from "./Alert";
 function App() {
   //::::::::::::::::::::::::::Tuturial::::::::::::::::::
 
-  const [name,setName]=useState();
+  const [name,setName]=useState("");
   const [list,setList]=useState([]);
   const[isEdit,setIsEdit]=useState(false);
   const[editId,setEditId]=useState('');
@@ -50,12 +50,12 @@ function App() {
   //:::::::::::::::::::::::::::::::::::::::::EDIT FUNCTION !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
   const editItem=(id)=>{
-    const specificItem=list.find((item)=>item.id===id)
+
+    const specificItem=list.find((item)=>item.id === id)
+    // console.log(specificItem)
     setIsEdit(true);
     setEditId(id);
-    setName(specificItem.name)
-
-
+    setName(specificItem.Name)
   }
 
   function handleSubmit(e){
