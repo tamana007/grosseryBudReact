@@ -47,6 +47,11 @@ function App() {
     // console.log(newList);
 
   }
+  const editItem=(id)=>{
+    const specificItem=list.find((item)=>item.id===id)
+    isEdit(true);
+
+  }
 
   function handleSubmit(e){
     e.preventDefault();
